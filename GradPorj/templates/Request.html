@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request File</title>
+    <link rel="stylesheet" href="{% static 'request.css' %}">
+    <link rel="stylesheet" href="{% static 'loader.css' %}">
+</head>
+
+<body onload="myFunction()">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+   
+
+    <div class="panel">
+        <div class="logo">
+            <button><img src="{% static 'emu-dau-logo.png' %}" alt="Logo"></button>
+        </div> </div>
+        <div class="left">
+        <div class="menu">
+            <a href = "/stddash"><button><img src="{% static 'dashboard.png' %}" alt="Dashboard Icon"> Dashboard</button></a>
+            <a href = "/student_tracking"><button><img src="{% static 'pointer.png' %}" alt="Track Icon"> Track</button></a>
+            <a href = "/Req"><button><img src="{% static 'apply.png' %}" alt="Apply Icon"> Applications</button></a>
+        </div>
+        <div class="footer">
+            <a href="/logout"><button><img src="{% static 'logout.png'%}" alt="Logout Icon"> Logout</button></a>
+        </div>
+    </div>
+
+    <div class="top">
+        <div class="user-profile">
+            <img src="{% static 'profile-image.jpg' %}" alt="Profile Image">
+            <span>{{name}}</span>
+        </div>
+    </div>
+
+
+    
+
+    <div class="header">
+        <span style="font-size: 22px; margin-bottom: 7px;">Applications</span>
+        <span style="font-size: 12px;">Home / Applications</span>
+    </div>
+
+    <div class="content">
+        <div class="request">
+<p>Document Request</p>
+<form method="POST">
+    {% csrf_token %}
+<div>
+    <span>Document Type</span>
+    <select id="choice1" name="choice1">
+        <option value="transcript">Transcript</option>
+        <option value="education-certificate">Education Certificate</option>
+    </select>
+</div>
+<div>
+    <span>Language</span>
+    <select id="choice2" name="choice2">
+        <option value="english">English</option>
+        <option value="turkish">Turkish</option>
+    </select>
+</div>
+<input type="submit" value="request">
+</form>
+        </div>
+
+        <div class="history">
+<p>Request History</p>
+{% for message in messages %}
+<h5 style="color: red;">{{message}}</h5>
+{% endfor %}
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Document</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for file in files %}
+        <tr>    
+            <td>{{ file.type }}</td>
+            <td>{{ file.Date }}</td>
+            <td>{{ file.status }}</td>
+            <td><a href="{% url 'download_file' file_id=file.id %}"  class = "application-link"><button><img src="{% static 'document.png' %}" alt="Doc"></button></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+        </div>
+    </div>
+</div>
+<script src = "{% static 'myfunction.js' %}">    
+</script>
+</body>
+
+</html>

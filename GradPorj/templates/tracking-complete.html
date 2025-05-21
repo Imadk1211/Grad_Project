@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'track2.css' %}"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{% static 'loader.css' %}">
+</head>
+
+<body onload="myFunction()">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="panel">
+    <div class="logo">
+        <button><img src= "{% static 'emu-dau-logo.png' %}" alt="Logo"></button>
+    </div>
+</div>
+
+    <div class="left">
+        <div class="menu">
+            <a href="/secdash"><button><img src="{% static 'dashboard.png' %}" alt="Dashboard Icon"> Dashboard</button></a>
+            <a href="/track"><button><img src="{% static 'pointer.png' %}" alt="Track Icon"> Track</button></a>
+            <a href="/upload"><button><img src="{% static 'upload.png' %}" alt="Upload Icon"> Upload</button></a>
+        </div>
+        <div class="footer">
+            <a href="/logout"><button><img src="{% static 'logout.png' %}" alt="Logout Icon"> Logout</button></a>
+    </div>
+</div>
+
+    
+    <div class="top">
+        <div class="user">
+            <img src= "{% static 'profile-image.jpg' %}" alt="Profile Image">
+            <span>{{name}}</span>
+        </div>
+    </div>
+
+    <div class="header">
+        <span style="font-size: 22px; margin-bottom: 7px;">Document Details</span>
+        <span style="font-size: 12px;">Home / Tracking / Document</span>
+    </div>
+
+
+
+    <div class="content">
+        <div class="section">
+            <span><button style="border:none; background:none;"><a href="{% url 'download_file' file_id=files.id %}" style="color:#38b7ed ;text-decoration: none;"><img  style="width:17px; height: 16px; " src= "{% static 'google-docs.png' %}" alt="Download Doc"></button>{{files.type}}</span></a>
+            <p>Location: {{ files.location }}</p>
+            {% for message in messages %}
+    <h5 style="color: red;">{{message}}</h5>
+    {% endfor %}
+            <form method="post">
+                {% csrf_token %}
+        <select name="choice1" id="choice2">
+            <option value="">Decision</option>
+            <option value="approve">Approve</option>
+            <option value="Denied">Deny</option>
+        </select>
+        <select name="choice2" id="choice2">
+            <option value="">Send To</option>
+            <option value="Advisor">Advisor</option>
+            <option value="Chairman">Chairman</option>
+            <option value="Vice-Chairman">Vice-Chairman</option>
+        </select>
+        </div>
+        <div class="send">
+        <button >Send</button>
+    </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script src = "{% static 'myfunction.js' %}">    
+</script>
+</body>
+
+</html>

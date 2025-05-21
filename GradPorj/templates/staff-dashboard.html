@@ -1,0 +1,70 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'loader.css' %}">
+     <!-- Link to your CSS file -->
+</head>
+
+<body onload="myFunction()">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="panel">
+        <div class="logo">
+            <button><img src="{% static 'emu-dau-logo.png' %}" alt="Logo"></button>
+        </div>
+    </div>
+
+    <div class="left">
+        <div class="menu">
+            <a href="/staffdash"><button><img src="{% static 'dashboard.png' %}" alt="Dashboard Icon"> Dashboard</button></a>
+            <a href="/staff_tracking"><button><img src="{% static 'pointer.png' %}" alt="Track Icon"> Track</button></a>
+        </div>
+        <div class="footer">
+            <a href="/logout"><button><img src="{% static 'logout.png' %}" alt="Logout Icon"> Logout</button></a>
+        </div>
+    </div>
+
+    <div class="top">
+        <div class="user">
+            <img src="{% static 'profile-image.jpg' %}" alt="Profile Image">
+            <span>{{name}}</span>
+        </div>
+    </div>
+    <div class="header">
+        <span style="font-size: 22px; margin-bottom: 7px;">Dashboard</span>
+        <span style="font-size: 12px;">Home / Dashboard</span>
+    </div>
+
+    <div class="content">
+        <div class="section">
+            <span>Notifications</span>
+            <div class="content-box">
+                {% for m in messa reversed %}
+                <a href="#" class="application-link">{{m.text}}<p class="date">{{m.Date}}</p></a>
+                {% endfor %}
+            </div>
+            </div>
+    
+
+        <div class="section">
+            <span>Documents for Review</span>
+            <div class="content-box">
+                {% for file in files reversed %}
+                <a href="/authenticatie_staff/{{file.id}}"  class = "application-link">{{ file.type }}-----{{file.stdid}}</a>
+                {% endfor %}
+                    </div>
+        </div>
+        </div>
+</div>
+<script src = "{% static 'myfunction.js' %}">    
+</script>
+</body>
+
+</html>

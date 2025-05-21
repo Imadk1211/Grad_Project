@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Page</title>
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
+    <link rel="stylesheet" href="{% static 'loader.css' %}">
+</head>
+
+<body onload="myFunction()">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="panel">
+    <div class="logo">
+        <button><img src="{% static 'emu-dau-logo.png' %}" alt="Logo"></button>
+    </div>
+</div>
+    <div class="left">
+        <div class="menu">
+            <a href="/staffdash"><button><img src="{% static 'dashboard.png' %}" alt="Dashboard Icon"> Dashboard</button></a>
+            <a href="/staff_tracking"><button><img src="{% static 'pointer.png' %}" alt="Track Icon"> Track</button></a>
+            <a href=""><button><img src="{% static 'upload.png' %}" alt="Upload Icon"> Upload</button></a>
+        </div>
+        <div class="footer">
+            <a href="/logout"><button><img src="{% static 'logout.png'%}" alt="Logout Icon"> Logout</button></a>
+        </div>
+    </div>
+
+    <div class="top">
+        <div class="user">
+            <img src="{% static 'profile-image.jpg' %}" alt="Profile Image">
+            <span>{{name}}</span>
+        </div>
+    </div>
+
+    <div class="header">
+        <span style="font-size: 22px; margin-bottom: 7px;">Upload</span>
+        <span style="font-size: 12px;">Home / Upload</span>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="content">
+            <div class="upload">
+                <span>Upload a File</span>
+                {% for message in messages %}
+                <h5 style="color: red;">{{message}}</h5>
+                {% endfor %}
+                <iframe id="uploadPopup" src="upload-popup.html" style="display: none;"></iframe>
+                
+                <select name =dropdown>
+                    <option value="summertraining">Summer Training</option>
+                    <option value="transcript">Transcript</option>
+                    <option value="healthreport">Health Report</option>
+                    <option value="graduationform">Graduation Form</option>
+                    <option value="courseenrollment">Course Enrollment</option>
+                    <option value="leaveofabsence">Leave of Absence</option>
+                </select>
+                <input type="text" placeholder="Student Number" name="stdid">
+                <div class="file-upload">
+                    <label for="myfile" class="file-label">Choose a file...</label>
+                    <input type="file" id="myfile" name="file" multiple="multiple">   
+                </div>
+                <div class="submit">
+                <input type="submit" />
+            </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src = "{% static 'myfunction.js' %}">    
+</script>
+</body>
+
+</html>

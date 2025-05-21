@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Files</title>
+</head>
+<body>
+    <h1>Uploaded Files</h1>
+    <ul>
+        {% for file in files %}
+            <li><a href="{% url 'download_file' file_id=file.id %}">{{ file.type }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

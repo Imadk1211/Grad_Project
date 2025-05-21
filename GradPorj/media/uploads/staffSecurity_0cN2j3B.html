@@ -1,0 +1,85 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'staffStyles.css' %}">
+    <title>Staff Security Key Update</title>
+</head>
+<body>
+    <div id="sidePanel" class="side-panel">
+        <a id='closeSidePanel' href="javascript:void(0)" class="closebtn" 
+        style="font-size: 30px;" onclick="closeNav()">&#9776;</a>
+        <!-- Add content or links here -->
+        <div class="sidePanel-href">
+            <a href="staffhome"><button class="panel-button" onclick=" st/* to staffDashboard.html */">Dashboard</button></a>   
+            <a href="staffUpdateRecordSearch"><button class="panel-button" onclick="/* to staffUpdateRecord.html */">Search Record</button></a>
+            <button style="background-color: #022b3a;" class="panel-button" onclick="/* function for Security */">Security</button>
+            <a href="logout"><button id="logout-button" class="panel-button" onclick="/* function for Logout */">Logout</button></a>
+        </div>
+    </div>
+    <div class="header">
+        <span style="font-size:30px; cursor:pointer; margin-left:10px; color:white;" onclick="openNav()">&#9776;</span>
+        <h1>Staff Page</h1>
+    </div>
+    <div class="security-container" id="mainContent">
+        <h1>Security Key Management</h1>
+        <form id="keyUpdateForm">
+            <div class="form-group">
+                <input type="text" id="dsaKey" name="dsaKey" placeholder="Enter new DSA Key">
+                <button type="submit">Update DES Key</button>
+            </div>
+                <br><br>
+            <button style="width: auto; margin-bottom: 5px;" type="submit" >Update RSA Keys</button>
+            <button style="width: auto; background-color: crimson; margin-top: 0;" type="submit">Show Keys</button>
+        </form>
+        <div style="padding-bottom: 50px;">
+            Public Key: <br>
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArHE1c6IIKKc3PJbsUcTx
+aI4hcdT4yjaFR+NH5XfCjjeS6oTHU2nhB4u+U/SOgUeWx0R5CvXvMq+8eQJ+ma77
+97qR3QDtp79geLNmdhDgsewIjaSXk1IsZDpCBlj6M/h2oXQEoFIPQPGeWPJYilBP
+oosLHcKT7+cmSb9cKPGxXcKcFhpIhC+InNLKP+imgiwjdjyk5MBFqcknzDh+6/03
+nZWkGvBF51f/d/MY2uFIrqdEildsPpd14ULRkHIX4GAygpZ+zG0TstKlnULXldoi
+1iJkGFHjNRxUZKiEV49M4rkiu5bItGbA69TYZnsdM7j+NFcco38UQGevmAqWH4Vq
+lQIDAQAB
+<br>
+-----END PUBLIC KEY-----
+<br><br>
+Private Key: <br>
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEArHE1c6IIKKc3PJbsUcTxaI4hcdT4yjaFR+NH5XfCjjeS6oTH
+U2nhB4u+U/SOgUeWx0R5CvXvMq+8eQJ+ma7797qR3QDtp79geLNmdhDgsewIjaSX
+k1IsZDpCBlj6M/h2oXQEoFIPQPGeWPJYilBPoosLHcKT7+cmSb9cKPGxXcKcFhpI
+hC+InNLKP+imgiwjdjyk5MBFqcknzDh+6/03nZWkGvBF51f/d/MY2uFIrqdEilds
+Ppd14ULRkHIX4GAygpZ+zG0TstKlnULXldoi1iJkGFHjNRxUZKiEV49M4rkiu5bI
+tGbA69TYZnsdM7j+NFcco38UQGevmAqWH4VqlQIDAQABAoIBAD99GuHs+TYGgrbD
+FlTwvrTxB21CrSq+MgoKqxDYLAByg5vmsQCMDfbaQ4PjmYgNlHzfP/WCIMQ3oZuo
+CHaKz2gg/80vp1BIjLtDyeiURDYdofSMceYirgdkz6RIpC34P60n6wAf1k/h5Zv3
+9hNOiFNfAAO//Pmp0BX853CHs/bBseVjZxMPupEmFwQIrRqFoptAcbOoZiWoxNbG
+wJ33Dner+bkl6lQGZv9sA0Z2hBfX8xUqO+B8MQK+J1vsqCs06Sjm0wuD+iRKoiVK
+ghqCC6dqwKD7aPQKk4DKy1hDS62KEG2xq3Okp2doKljRKvUV3ARAv6h8Loecrghl
+gfmgny0CgYEAxEkjoKr2Ymoz/h50E5T/jn9tNr6Yvn+vrpAutovVwFxgpyix2Se1
+jtMbx1EVSf/yaeQn7e4SD3RzV30dCJQVTl26XdF9R1MbPpcGuFTQQeo9OdJFjlIW
+mYYDnbOlOYkXLhPsjmbDHH6dSIhDVniOtxVpppNOrAuCjM8ENf97/r8CgYEA4Ocf
+qujoCCcMf9Mo1IuD4yMa4DvBKxJ5BMm2i8FPYqSgDm3857x0WfvMLn1VLqUSjHG9
+HEYaCTAvazMxXjFX3OZLhR76OHu3t1GkJ/F0P8cASyJuYvYExPHoeOd4QYkfxpcn
+wmvwcenaYVAo8kfvkB/ii3iUO6X4athZoBmO/6sCgYEAnvVkRu9tDRJY/MkI0/rs
+YyhK9/SumkeprMLTMb5Y4qltFLJeJTCFVh8c9fNyPDVsydidhZAxTBbQed+2rYXP
+I2HAVc4bmLFy9OM16/2zkk3yO2tQLQvJhZcEQqiDe+7LuOMlxcTu6ZqYIW9IqTSE
+zzwmDWJqaeYAWawlCt3WOt0CgYBcOEly8mfal/B3JaXTaZXd+FIX6kiuGbgH75Jr
+wguEPk7nO9B9UXhAQZCa64eXRdbSQf0yb8hTRi/bfDVdE0yc5s3Gu0oNCSXvBIoU
+Wty5HiePp4GuEIUqIKubkAZukQS3kNmbzljczPBgANeZaUfhSEHDwOC/iLHRVf+C
+N5i8WwKBgQClJ9O6iwRV6w5rxIGl6qa4GAMh9PU7/AOjZ3O9HusUoOXUbDxkzIOL
+U2y4b3GzDZNhTsMF3hwkLx+uQUsmJVKqY5f4SKWyx37fIj8vPsCJLqlElXQaHGKQ
+ppp4boeKGMmra0HJ73vm5sCrcK47WLrIJL6cTWSuwUS/SXLUt6Jarg==
+<br>
+-----END RSA PRIVATE KEY-----
+        </div>
+    </div>
+    
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

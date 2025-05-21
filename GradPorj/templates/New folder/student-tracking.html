@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Page</title>
+    <link rel="stylesheet" href="{% static 'tracking-style.css' %}"> <!-- Link to your CSS file -->
+</head>
+
+<body>
+    <div class="panel">
+    <div class="logo">
+        <button><img src="{% static 'emu-dau-logo.png'%}" alt="Logo"></button>
+    </div>
+</div>
+
+    <div class="left">
+        <div class="menu">
+        <a href="/stddash"><button><img src="{% static 'dashboard.png' %}" alt="Dashboard Icon"> Dashboard</button></a>
+        <a href=""><button><img src="{% static 'pointer.png' %}" alt="Track Icon"> Track</button></a>
+        <a href ="/Req"><button><img src="{% static 'apply.png' %}" alt="Apply Icon"> Applications</button></a>
+    </div>
+    <div class="footer">
+        <a href=""><button><img src="{% static 'settings.png'%}"" alt="Settings Icon"> Settings</button></a>
+        <a href="/logout"><button><img src="{% static 'logout.png'%}" alt="Logout Icon"> Logout</button></a>
+    </div>
+</div>
+
+    
+    <div class="top">
+        <div class="user">
+            <img src="{% static 'profile-image.jpg'%}" alt="Profile Image">
+            
+            <span>{{name}}</span>
+        </div>
+    </div>
+
+    <div class="header">
+        <span style="font-size: 22px; margin-bottom: 7px;">Tracking</span>
+        <span style="font-size: 12px;">Home / Tracking</span>
+    </div>
+
+
+
+    <div class="content">
+        <div class="search">
+            <span style="font-size: 16px; font-weight: bold; margin-top: 10px; margin-bottom: 10px;">Search for a File</span>
+            <select>
+                <option value="summer-training">Summer Training</option>
+                <option value="transcript">Transcript</option>
+                <option value="health-report">Health Report</option>
+                <option value="graduation-form">Graduation Form</option>
+                <option value="course-enrollment">Course Enrollment</option>
+                <option value="leave-of-absence">Leave of Absence</option>
+            </select>
+            
+            <input style=" background-color: #f1f5f8;" type="text" placeholder="Student Number">
+            <button style="background-color: #133e70; color: white;">Search</button>
+        </div>
+        <div class="file">
+           <div class = "name">
+            <img src="{% static 'document.png'%}" alt="File Icon">
+            <span>Summer Training</span>
+        </div> 
+        <table>
+            <tbody>
+                <tr><td><label><input type="checkbox" name="advisor"> Advisor</label></td></tr>
+            <tr><td><label><input type="checkbox" name="vice-chair"> Vice Chair</label></td></tr>
+        <tr><td><label><input type="checkbox" name="chairman"> Chairman</label></td></tr>    
+    <tr><td><label><input type="checkbox" name="secretary"> Secretary</label></td></tr>    
+    </tbody>
+        </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

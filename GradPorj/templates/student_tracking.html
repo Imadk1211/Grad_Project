@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Page</title>
+    <link rel="stylesheet" href="{% static 'Student Tracking.css' %}">
+    <link rel="stylesheet" href="{% static 'loader.css' %}"> 
+</head>
+
+<body onload="myFunction()">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="panel">
+        <div class="logo">
+            <button><img src= "{% static 'emu-dau-logo.png' %}" alt="Logo"></button>
+        </div>
+    </div>
+
+    <div class="left">
+        <div class="menu">
+            <a href = "/stddash"><button><img src="{% static 'dashboard.png' %}" alt="Dashboard Icon"> Dashboard</button></a>
+            <a href = "/student_tracking"><button><img src="{% static 'pointer.png' %}" alt="Track Icon"> Track</button></a>
+            <a href = "/Req"><button><img src="{% static 'apply.png' %}" alt="Apply Icon"> Applications</button></a>
+        </div>
+        <div class="footer">
+            <a href="/logout"><button><img src="{% static 'logout.png' %}" alt="Logout Icon"> Logout</button></a>
+        </div>
+    </div>
+
+    <div class="top">
+        <div class="user">
+            <img src= "{% static 'profile-image.jpg' %}" alt="Profile Image">
+            <span>{{name}}</span>
+        </div>
+    </div>
+    <div class="header">
+        <span style="font-size: 22px; margin-bottom: 7px;">Applications</span>
+        <span style="font-size: 12px;">Home / Applications</span>
+    </div>
+
+
+    <div class="content">
+        <div class="search">
+            <form method="POST">
+            {% csrf_token %}
+            <select name="choice" id="choice">
+                <option value="">Filter</option>
+                <option value="summertraining">Summer Training</option>
+                <option value="transcript">Transcript</option>
+                <option value="healthreport">Health Report</option>
+                <option value="graduationform">Graduation Form</option>
+                <option value="courseenrollment">Course Enrollment</option>
+                <option value="leaveofabsence">Leave of Absence</option>
+                <option value="education-certificate">Education Certificate</option>
+            </select>
+            <button style="background-color: #133e70;"><img src= "{% static 'search.png' %}" alt="Search Icon"></button>
+            </form>
+        </div>
+      
+        <div class="section">
+            <span>Documents</span>
+            <div class="content-box">
+
+            {% for file in files reversed %}
+            <div class="application-link">
+                <ul>
+            <li>{{ file.type }} <p class="cont">Status: {{ file.status }}</p></li>
+            <li><p class="cont">Location: {{file.location}} </p></li>
+            <li><p class="cont">History: {{file.history}}</p></li>
+        </ul>
+        </div> 
+        {% endfor %}
+
+            </div>
+        
+    </div>
+    </div>
+</div>
+<script src= "{% static 'myfunction.js' %}">    
+</script>
+</body>
+
+</html>

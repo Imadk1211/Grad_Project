@@ -1,0 +1,270 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'loader.css' %}"> <!-- Link to your CSS file -->
+    <title>Tracking Page</title>
+   
+    <style>
+        body {
+            background-color: #f1f5f8;
+            margin: 0;
+            color: black;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, sans-serif;
+        }
+
+
+        .left {
+            background-color: #133e70;
+            color: white;
+            width: 150px;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+            .left button {
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: none;
+                background: none;
+                color: white;
+                cursor: pointer;
+            }
+
+                .left button img {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 10px;
+                }
+
+        .panel {
+            display: flex;
+            position: fixed;
+            top: 22px;
+            left: 25px;
+            z-index: 3;
+        }
+
+        .logo button {
+            margin-bottom: 20px;
+            width: 100px;
+            padding: 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+
+            .logo button img {
+                width: 70px;
+                height: 70px;
+                margin-right: 10px;
+            }
+
+        .menu {
+            margin-top: 180px;
+        }
+
+        .footer {
+            margin-top: 200px;
+        }
+
+        .top {
+            background-color: #0d3059;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .user {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: 90%;
+        }
+
+            .user img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .user span {
+                font-size: 14px;
+            }
+
+        .header {
+            background-color: #f1f5f8;
+            color: #a5a5b2;
+            border: 1px solid #a5a5b2;
+            border-left: none;
+            border-right: none;
+            padding: 20px;
+            position: fixed;
+            top: 70px;
+            left: 150px;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        .content {
+            margin-top: 170px;
+            margin-left: 150px;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .search,
+        .file {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 70px;
+            margin-left: 20px;
+            margin-right: 20px;
+            width: 40%;
+            height: 210px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .search select,
+            .search input[type="text"] {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .search button {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                width: 100px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+        .search {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-right: 10px;
+        }
+
+        .file {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-right: 10px;
+        }
+
+            .file img {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+
+            .name,
+            .file table tbody tr {
+                margin-bottom: 10px;
+                padding: 10px;
+                height: 30px;
+            }
+    </style>
+</head>
+<body onload="myFunction()">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="panel">
+        <div class="logo">
+            <button><img src="{% static 'emu-dau-logo.png' %}" alt="Logo"></button>
+        </div>
+    </div>
+
+    <div class="left">
+        <div class="menu">
+            <a href="/secdash"><button><img src="{% static 'dashboard.png' %}" alt="Dashboard Icon"> Dashboard</button></a>
+            <a href="/track"><button><img src="{% static 'pointer.png' %}" alt="Track Icon"> Track</button></a>
+            <a href="/upload"><button><img src="{% static 'upload.png' %}" alt="Upload Icon"> Upload</button></a>
+        </div>
+        <div class="footer">
+            <button><img src="{% static 'settings.png' %}" alt="Settings Icon"> Settings</button>
+            <button><img src="{% static 'logout.png' %}" alt="Logout Icon"> Logout</button>
+        </div>
+    </div>
+
+
+    <div class="top">
+        <div class="user">
+            <img src="{% static 'profile-image.jpg' %}" alt="Profile Image">
+            <span>{{name}}</span>
+        </div>
+    </div>
+
+    <div class="header">
+        <span style="font-size: 22px; margin-bottom: 7px;">Tracking</span>
+        <span style="font-size: 12px;">Home / Tracking</span>
+    </div>
+
+
+    <form method="post">
+    <div class="content">
+        <div class="search">
+            <span style="font-size: 16px; font-weight: bold; margin-top: 10px; margin-bottom: 10px;">Search for a File</span>
+            {% for message in messages %}
+            <h5 style="color: red;">{{message}}</h5>
+            {% endfor %}
+        
+            {% csrf_token %}
+            <select name="selection">
+                <option value="summertraining">Summer Training</option>
+                <option value="transcript">Transcript</option>
+                <option value="healthreport">Health Report</option>
+                <option value="graduationform">Graduation Form</option>
+                <option value="courseenrollment">Course Enrollment</option>
+                <option value="leaveofabsence">Leave of Absence</option>
+            </select>
+            {% csrf_token %}
+            <input style=" background-color: #f1f5f8;" type="text" placeholder="Student Number" name = "search" id = "search">
+            <button style="background-color: #133e70; color: white;">Search</button>
+        
+        </div>
+        
+    </div>
+    </form>
+    <script src = "{% static 'myfunction.js' %}">    
+    </script>
+</body>
+
+</html>
